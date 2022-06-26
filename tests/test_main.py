@@ -1,21 +1,28 @@
 import unittest
-from main import avg
+from main import avg, counter
 
 
-class EasyTestCase(unittest.TestCase):
-    def test_easy_input(self):
+class AvgTestCase(unittest.TestCase):
+    def test_right(self):
         self.assertEqual(avg(1, 2, 3), 2)
 
-    def test_easy_input_fail(self):
-        self.assertEqual(avg(1, 2, 3), 1)
+    def test_wrong_input_type(self):
+        with self.assertRaises(TypeError):
+            self.assertEqual(avg(1, 2, "string"), 2)
+
+    def test_in(self):
+        self.assertIn(avg(1, 2, 3), [2, 3])
 
 
-class MediumTestCase(unittest.TestCase):
-    def test_medium_input(self):
-        self.assertEqual(avg(1, 2, 3), 2)
+class CounterTestCase(unittest.TestCase):
 
-    def test_medium_input_fail(self):
-        self.assertEqual(avg(1, 2, 3), 1)
+    def test_right(self):
+        self.assertEqual(counter('valar'), 5)
+
+    def test_wrong(self):
+        with self.assertRaises(TypeError):
+            self.assertEqual(counter(5), 1)
+
 
 
 if __name__ == '__main__':
